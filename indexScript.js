@@ -8,7 +8,17 @@
 
 // const observer = new IntersectionObserver((entries, observer)=>{
 //     entries.forEach(entry =>{
-        
+//         let text = document.querySelector('.thick-text');
+//         let text2 = document.querySelector('.thin-text');
+//         let text3 = document.querySelector('.para-text');
+//         if (entry.isIntersecting) {
+//             text.classList.add('show');
+//             text.classList.remove('up-high');
+//             text2.classList.add('show');
+//             text2.classList.remove('down-low');
+//             text3.classList.add('show');
+//             text3.classList.remove('from-right');
+//         };
 //     })
 // }, options)
 
@@ -26,14 +36,33 @@ const options = {
 
 const observer = new IntersectionObserver((entries, observer)=>{
     entries.forEach(entry =>{
-        if (entry.isIntersecting) {
-            entry.target.style.width = '50%';
-        } else {
-            entry.target.style.width = '100%';
+        console.log('results', entry.target.id, entry.isIntersecting)
+        if (entry.target.id === '3' && entry.isIntersecting) {
+            let image = document.querySelector('#haikyuu');
+            image.classList.add('show');
+            image.classList.remove('hide');
         }
+        let text = document.querySelector('.thick-text');
+        let text2 = document.querySelector('.thin-text');
+        let text3 = document.querySelector('.para-text');
+        if (entry.target.id === '1' && entry.isIntersecting) {
+            text.classList.add('show');
+            text.classList.remove('up-high');
+            text2.classList.add('show');
+            text2.classList.remove('down-low');
+            text3.classList.add('show');
+            text3.classList.remove('from-right');
+        }
+        //observer.observe(entry.target) when you want to stop checking something.
     })
 }, options)
 
 sections.forEach(section => {
     observer.observe(section);
 })
+
+
+function changeProgress(){
+    let x = document.querySelector('#bar');
+    x.style.width = '80%';
+}
